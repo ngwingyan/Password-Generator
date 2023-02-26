@@ -25,6 +25,11 @@ function getPasswordOptions() {
   var IsSymbols = confirm("Would you like to include symbols in the password?");
   var IsNumbers = confirm("Would you like to include numbers in the password?");
 
+  // check if user choose cancel for all four options, if so, need to try again with selecting the length
+  if (IsLowerCase === false && IsUppercase === false && IsSymbols === false && IsNumbers === false) {
+    alert("You must choose at least ONE option of lowercase, uppercase, numbers or special characters. Please try again.")
+    return getPasswordOptions()
+  };
   // add the array of characters into the pool when selected
   if (IsLowerCase === true) {
     charpool = charpool.concat(lowerCasedCharacters);
@@ -40,13 +45,7 @@ function getPasswordOptions() {
 
   if (IsNumbers === true) {
     charpool = charpool.concat(numericCharacters);
-  };
-
-  // check if user choose cancel for all four options, if so, need to try again with selecting the length
-  if (IsLowerCase === false && IsUppercase === false && IsSymbols === false && IsNumbers === false) {
-    alert("You must choose at least ONE option of lowercase, uppercase, numbers or special characters. Please try again.")
-    generatePassword();
-  };
+  }
   return charpool;
 };
 
@@ -66,24 +65,24 @@ function getRandom(arr) {
 function generatePassword() {
   // ask user to choose how long the password should be
   var chosenPasswordLength = parseInt(prompt("How long do you want the password to be? (Choose from 10 to 64)"));
-  
+
   // validate user input to be a number and between 10 to 64 (both inclusive)
   if (isNaN(chosenPasswordLength) || chosenPasswordLength < 10 || chosenPasswordLength > 64) {
-    
+
     // if input is not a number, password length not between 10 and 64, need to try again
     alert("Passowrd length must be between 10 and 64 digits long. Please try again.");
-    return generatePassword();
-  }
 
-  // call out the function with selected character pool
-  var charpool = getPasswordOptions();
-
-  // call out getRandom function to pick a random character from the character pool and add to ouput until the length chosen
-  passwordoutput = [];
-  for (var i = 0; i < chosenPasswordLength; i++) {
-    passwordoutput += getRandom(charpool);
+  } else {
+    // call out the function with selected character pool
+    var charpool = getPasswordOptions();
+    
+    // call out getRandom function to pick a random character from the character pool and add to ouput until the length chosen
+    passwordoutput = [];
+    for (var i = 0; i < chosenPasswordLength; i++) {
+      passwordoutput += getRandom(charpool);
+    }
+    return passwordoutput;
   }
-  return passwordoutput;
 };
 
 /* Below are provided in starter code */
