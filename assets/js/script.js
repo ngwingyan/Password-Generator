@@ -71,7 +71,7 @@ function generatePassword() {
   if (isNaN(chosenPasswordLength) || chosenPasswordLength < 10 || chosenPasswordLength > 64) {
     
     // if input is not a number, password length not between 10 and 64, need to try again
-    alert("Passowrd length must be between 10 and 64 digits long. Please try again");
+    alert("Passowrd length must be between 10 and 64 digits long. Please try again.");
     return generatePassword();
   }
 
