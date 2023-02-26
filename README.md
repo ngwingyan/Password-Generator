@@ -37,7 +37,7 @@ Create an application for users to generate random password based on criteria th
 
 
 ## Link
-- Repository URL - https://github.com/ngwingyan/Password-Generator
+- Repository URL - https://github.com/ngwingyan/Password-Generator/
 - Deployed URL - https://ngwingyan.github.io/Password-Generator/
 
 
